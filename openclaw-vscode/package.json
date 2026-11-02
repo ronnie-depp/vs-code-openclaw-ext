@@ -1,0 +1,58 @@
+{
+  "name": "openclaw-vscode",
+  "displayName": "OpenClaw Coding Chat",
+  "description": "A local VS Code coding chat for OpenClaw",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onView:openclaw.chat"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "openclaw.chat",
+          "name": "OpenClaw"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "openclaw.setToken",
+        "title": "OpenClaw: Set Gateway Token"
+      }
+    ],
+    "configuration": {
+      "title": "OpenClaw",
+      "properties": {
+        "openclaw.endpoint": {
+          "type": "string",
+          "default": "http://127.0.0.1:18789",
+          "description": "Local OpenClaw Gateway URL"
+        },
+        "openclaw.agent": {
+          "type": "string",
+          "default": "openclaw/default",
+          "description": "OpenClaw agent target"
+        },
+        "openclaw.confirmBeforeInsert": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask before inserting the assistant response into the editor"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.4.0"
+  }
+}
